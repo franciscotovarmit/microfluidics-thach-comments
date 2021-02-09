@@ -20,13 +20,12 @@ class Block_with_Vacuum(i3.PCell):
 
         def _get_components(self):
             # 1. calculate the transformations of the rings based on their properties
-            circuitWidth = block_layout.size_info()
+            #circuitWidth = block_layout.size_info()
 
-            circuit_x_gap = 2000.0
-            separation = abs(circuitWidth.west) + abs(circuitWidth.east)+ circuit_x_gap
+            #circuit_x_gap = 2000.0
+            #separation = abs(circuitWidth.west) + abs(circuitWidth.east)+ circuit_x_gap
 
-            t1 = i3.Translation((separation*0, 0.0))
-            t2 = i3.Translation((separation*1, 0.0))
+            t1 =  i3.Translation((0*0, 0.0)) # i3.Translation((separation*0, 0.0))
 
             # 2. Generating the instances
 
@@ -38,6 +37,7 @@ class Block_with_Vacuum(i3.PCell):
             insts += self._get_components()
             return insts
 
+'''
 if __name__ == "__main__":
     print "This is not the main file. Run 'execute.py' in the same folder"
     block = TrapWithTees() # BlockWithTees()
@@ -57,4 +57,4 @@ if __name__ == "__main__":
     Block_with_Vacuum_layout = Block_with_Vacuum.Layout()
     Block_with_Vacuum_layout.visualize(annotate = True)
     Block_with_Vacuum_layout.write_gdsii("vacuum_channel.gds")
-
+'''

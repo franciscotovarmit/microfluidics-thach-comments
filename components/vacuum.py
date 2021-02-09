@@ -97,19 +97,3 @@ class Vacuum_BooleanBoundary(i3.PCell):
             '''
             return ports
 
-# Main program
-if __name__ == "__main__":
-    trap = Vacuum_BooleanBoundary(feature_width = 50.0,
-                                  feature_height = 10.0,
-                                  gap_horiz = 30.0,
-                                  gap_vertical = 20.0,
-                                  vacuum_width = 50.0,
-                                  cInp = (0.0,0.0))
-    trap_layout = trap.Layout()
-    trap_layout.visualize(annotate=True)
-    trap_layout.visualize_2d()
-    # visualize_2d displays a top down view of the fabricated layout
-    #trap_layout.cross_section(i3.Shape([(0, 25), (100, 25)]), process_flow=TECH.VFABRICATION.PROCESS_FLOW).visualize()
-    #lay.cross_section(i3.Shape([(-9, 3), (9, 3)]), process_flow=vfab_flow).visualize()
-    trap_layout.write_gdsii("erik_trapI3.gds")
-
