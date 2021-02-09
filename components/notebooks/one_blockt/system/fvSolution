@@ -1,0 +1,67 @@
+
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+	object      fvSolution;
+}
+PISO{
+	momentumPredictor  false;
+	pRefValue  0.0;
+	nCorrectors  1;
+	nNonOrthogonalCorrectors  1;
+	pRefCell  0;
+}
+
+SIMPLE{
+	pRefValue  0.0;
+	nNonOrthogonalCorrectors  1;
+	pRefCell  0;
+}
+
+relaxationFactors{
+	p  0.7;
+	U  0.7;
+}
+
+potentialFlow{
+	pRefValue  0.0;
+	nNonOrthogonalCorrectors  1;
+	pRefCell  0;
+}
+
+solvers{
+	p{
+		relTol  0.0;
+		preconditioner  DIC;
+		tolerance  1e-06;
+		solver  PCG;
+	}
+
+	Phi{
+		relTol  0.0;
+		preconditioner  DIC;
+		tolerance  1e-06;
+		solver  PCG;
+	}
+
+	U{
+		relTol  0.0;
+		preconditioner  DILU;
+		tolerance  1e-06;
+		solver  PBiCG;
+	}
+
+}
+
+PIMPLE{
+	pRefCell  0;
+	nCorrectors  1;
+	pRefValue  0.0;
+	nNonOrthogonalCorrectors  1;
+	nOuterCorrectors  1;
+	momentumPredictor  false;
+}
+

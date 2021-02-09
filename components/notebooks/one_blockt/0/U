@@ -1,0 +1,56 @@
+FoamFile
+{
+   version 2.0;
+   format ascii;
+ class volVectorField;
+ object U;
+}
+dimensions [0 1 -1 0 0 0 0];
+boundaryField{
+	east_wall{
+		type  fixedValue;
+		value  uniform (0 0 0);
+	}
+
+	south_wall{
+		type  fixedValue;
+		value  uniform (0 0 0);
+	}
+
+	west_wall{
+		type  fixedValue;
+		value  uniform (0 0 0);
+	}
+
+	top_wall{
+		type  fixedValue;
+		value  uniform (0 0 0);
+	}
+
+	walls{
+		type  fixedValue;
+		value  uniform (0 0 0);
+	}
+
+	inlet0{
+		type  fixedValue;
+		value  uniform (0.05 0 0);
+	}
+
+	inlet1{
+		type  zeroGradient;
+	}
+
+	north_wall{
+		type  fixedValue;
+		value  uniform (0 0 0);
+	}
+
+	bottom_wall{
+		type  fixedValue;
+		value  uniform (0 0 0);
+	}
+
+}
+
+internalField  uniform (0 0 0);

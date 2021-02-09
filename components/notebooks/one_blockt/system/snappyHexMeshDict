@@ -1,0 +1,208 @@
+
+FoamFile
+{
+    version 2.0;
+    format ascii;
+    root "";
+    case "";
+    instance "";
+    local "";
+    class dictionary;
+    object autoHexMeshDict;
+}
+
+castellatedMesh true;
+snap true;
+addLayers true;
+
+geometry
+{
+    structure.stl
+    {
+        type triSurfaceMesh;
+        regions
+        {
+			ascii
+
+            {
+                name walls;
+            }
+        }
+        name walls;
+    }
+    inlet0.stl
+    {
+        type triSurfaceMesh;
+
+        regions
+        {
+			ascii
+
+            {
+			name inlet0;
+            }
+        }
+        name inlet0;
+    }
+    inlet1.stl
+    {
+        type triSurfaceMesh;
+
+        regions
+        {
+			ascii
+
+            {
+			name inlet1;
+            }
+        }
+        name inlet1;
+    }
+};
+
+castellatedMeshControls
+{
+    maxLocalCells 10000000;
+    maxGlobalCells 2000000;
+    minRefinementCells 0;
+    nCellsBetweenLevels 1;
+
+    features
+    (
+        {
+            file "structure.eMesh";
+			level 2;
+
+        }
+    );
+
+    refinementSurfaces
+    {
+        walls
+        {
+            level (1 2);
+
+            patchInfo
+            {
+                type wall;
+            }
+        }
+		inlet0
+
+        {
+            level (1 2);
+
+            patchInfo
+            {
+                type inlet;
+            }
+
+        }
+		inlet1
+
+        {
+            level (1 2);
+
+            patchInfo
+            {
+                type inlet;
+            }
+
+        }
+
+    }
+    resolveFeatureAngle 30;
+    refinementRegions
+    {
+
+        walls
+        {
+            mode distance;
+            levels ((1e-06 2) );
+		}
+		inlet0
+
+        {
+            mode distance;
+            levels ((1e-06 2) );
+		}
+		inlet1
+
+        {
+            mode distance;
+            levels ((1e-06 2) );
+		}
+	}
+    locationInMesh (3.33333333333e-09 3.33333333333e-09 0.000150003333333);
+    allowFreeStandingZoneFaces true;
+}
+snapControls{
+	explicitFeatureSnap  true;
+	nSmoothPatch  1;
+	nFeatureSnapIter  10;
+	implicitFeatureSnap  false;
+	nSolveIter  30;
+	nRelaxIter  5;
+	multiRegionFeatureSnap  true;
+	tolerance  1.0;
+}
+
+
+addLayersControls
+{
+    relativeSizes true;
+    layers
+    {
+        "walls*"
+        {
+            nSurfaceLayers 1;
+
+        }
+        "inlet*"
+        {
+            nSurfaceLayers 1;
+
+        }
+        "outlet*"
+        {
+            nSurfaceLayers 1;
+
+        }
+    }
+	minMedianAxisAngle 90.0;
+	nGrow 10;
+	maxFaceThicknessRatio 0.5;
+	nBufferCellsNoExtrude 0;
+	maxThicknessToMedialRatio 0.3;
+	nSmoothNormals 3;
+	featureAngle 30.0;
+	finalLayerThickness 10.0;
+	nSmoothThickness 10;
+	nSmoothSurfaceNormals 1;
+	expansionRatio 1.0;
+	nRelaxedIter 20;
+	nLayerIter 50;
+	minThickness 1.0;
+	nRelaxIter 5;
+}
+meshQualityControls{
+	maxInternalSkewness  -1.0;
+	nSmoothScale  4;
+	minTwist  -1.0;
+	maxNonOrtho  90.0;
+	minVol  -1e+30;
+	minDeterminant  1.0;
+	maxConcave  180.0;
+	minArea  -1.0;
+	minTetQuality  -1e+30;
+	maxBoundarySkewness  -1.0;
+	minFaceWeight  0.05;
+	errorReduction  0.75;
+	minTriangleTwist  -1.0;
+	minVolRatio  0.01;
+}
+
+
+
+mergeTolerance 1E-12;
+

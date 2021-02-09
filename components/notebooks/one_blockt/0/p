@@ -1,0 +1,49 @@
+FoamFile
+{
+   version 2.0;
+   format ascii;
+ class volScalarField;
+ object p;
+}
+dimensions [0 2 -2 0 0 0 0];
+boundaryField{
+	east_wall{
+		type  zeroGradient;
+	}
+
+	south_wall{
+		type  zeroGradient;
+	}
+
+	west_wall{
+		type  zeroGradient;
+	}
+
+	top_wall{
+		type  zeroGradient;
+	}
+
+	walls{
+		type  zeroGradient;
+	}
+
+	inlet0{
+		type  zeroGradient;
+	}
+
+	inlet1{
+		type  fixedValue;
+		value  uniform 0;
+	}
+
+	north_wall{
+		type  zeroGradient;
+	}
+
+	bottom_wall{
+		type  zeroGradient;
+	}
+
+}
+
+internalField  uniform 0;
